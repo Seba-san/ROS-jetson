@@ -1,0 +1,17 @@
+commit 5c5a4b708642a3b9de881e16bfc8c6bdc4a814ba
+Author: Seba-san <sansoni.sebas@gmail.com>
+Date:   Thu Dec 7 22:15:54 2017 -0300
+
+    Agregue los codigos de la jetson
+
+commit ee74ed683a3c929dbe13c19b51ba17de39cd233f
+Author: Seba-san <sansoni.sebas@gmail.com>
+Date:   Thu Dec 7 21:35:02 2017 -0300
+
+    separo en carpetas al master y a la jetson
+
+commit 5567a02613f16df9347106f1191abbb9ba1a1d26
+Author: Seba-san <sansoni.sebas@gmail.com>
+Date:   Thu Dec 7 21:26:30 2017 -0300
+
+    Primera version de estos codigos funcionando, corresponden a la sony
