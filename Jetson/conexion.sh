@@ -9,17 +9,17 @@ master=$(sudo cat /var/log/auth* | grep Accepted | awk 'NR==1 {print $11  }') # 
 #echo "$resultado"
 # ¿Donde esta conectado via eth o via wlan?
 echo "master $master"
-if [-n $jetson_eth]; then
+if [ -n $jetson_eth ]; then
 echo "jetson_eth $jetson_eth"
 else
-  if [-n $jetson_wlan]; then
+  if [ -n $jetson_wlan ]; then
     jetson=$jetson_wlan
   fi
 fi
-if [-n $jetson_wlan]; then
+if [ -n $jetson_wlan ]; then
 echo "jetson_wlan $jetson_wlan"
 else
-  if [-n $jetson_eth]; then
+  if [ -n $jetson_eth ]; then
     jetson=$jetson_eth
   fi
 fi
