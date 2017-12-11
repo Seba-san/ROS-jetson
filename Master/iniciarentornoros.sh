@@ -1,4 +1,6 @@
 #! /bin/bash
+
+source "$codigos"/Master/conexion.sh
 #Me paro en el home
 cd ~
 #cada vez que se inicia una nueva shell hay que poner:
@@ -16,6 +18,6 @@ echo 'en la consola, deveria aparecer lo mismo Si no aparece lo mismo ejecute: '
 echo 'source iniciarentornoros.sh'
 # el comando source sirve para que los comantos ateriores se ejecuten sobre la consola y no en una
 # consola a parte y que las variables no se guarden
-source conexion.sh
+
 export ROS_MASTER_URI=http://$master:11311
 export ROS_IP=$master
