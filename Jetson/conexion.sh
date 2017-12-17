@@ -9,17 +9,18 @@ master=$(sudo cat /var/log/auth* | grep Accepted | awk 'NR==1 {print $11  }') # 
 #echo "$resultado"
 # ¿Donde esta conectado via eth o via wlan?
 echo "master $master"
-if [ -n $jetson_eth ]; then
+if [ ! -z "${jetson_eth// }" ]; then # este comando limina los espacios ${var/pattern/string} replaces the first longest match of pattern with string. When pattern starts with / (as above) then it replaces all the matches. Because the replacement is empty, we can omit the final / and the string value
+# sacando los espacios, si tiene longitud nula, es que no hay nada dentro. el ! es para negar toda la expresion
 echo "jetson_eth $jetson_eth"
 else
-  if [ -n $jetson_wlan ]; then
+  if [ ! -z "${jetson_wlan// }" ]; then
     jetson=$jetson_wlan
   fi
 fi
-if [ -n $jetson_wlan ]; then
+if [ ! -z "${jetson_wlan// }" ]; then
 echo "jetson_wlan $jetson_wlan"
 else
-  if [ -n $jetson_eth ]; then
+  if [ ! -z "${jetson_eth// }" ]; then
     jetson=$jetson_eth
   fi
 fi

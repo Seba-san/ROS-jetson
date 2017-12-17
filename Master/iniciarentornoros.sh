@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source "$codigos"/Master/conexion.sh
+source "$codigos"/Master/conexion_entorno.sh
 #Me paro en el home
 cd ~
 #cada vez que se inicia una nueva shell hay que poner:
@@ -16,8 +16,13 @@ echo 'Si lo anterior funciono como se esperaba escriba: '
 echo 'echo $ROS_PACKAGE_PATH'
 echo 'en la consola, deveria aparecer lo mismo Si no aparece lo mismo ejecute: '
 echo 'source iniciarentornoros.sh'
+echo 'Se considera que se utiliza $master_wlan como master , de lo contrario'
+echo "ponga: "
+echo "master= ip_del_master "
+echo "export ROS_MASTER_URI=http://\$master:11311"
+echo "export ROS_IP=\$master"
 # el comando source sirve para que los comantos ateriores se ejecuten sobre la consola y no en una
 # consola a parte y que las variables no se guarden
 
-export ROS_MASTER_URI=http://$master:11311
-export ROS_IP=$master
+export ROS_MASTER_URI=http://$master_wlan:11311
+export ROS_IP=$master_wlan

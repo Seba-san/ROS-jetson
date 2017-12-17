@@ -47,16 +47,14 @@ unset ipjet
 unset ipjet_2
 echo -e "\e[0;34mmaster ethernet $master_eth \e[0m "
 echo -e "\e[0;34mmaster wifi $master_wlan \e[0m "
-if  [ -n "$ipjet_eth" ]
-    then
-      ssh nvidia@$ipjet_eth
-    fi
-
-if  [ -n "$ipjet_wlan" ]
-    then
-      ssh nvidia@$ipjet_wlan
-    fi
-
+# agregado ultimo
+# si hay una unica direccion para jetson, entonces la guarda en jetson
+if [ ! -n "$jetson_eth" ] && [  -n "$jetson_wlan" ]; then
+  jetson=$jetson_wlan
+fi
+if [  -n "$jetson_eth" ] && [ !  -n "$jetson_wlan" ]; then
+  jetson=$jetson_eth
+fi
 
   # echo "Buscando jetson con: sudo nmap -sP 192.168.6.0/24" # -sP es para que solo haga ping
   # Nmap=$(sudo nmap -sP 192.168.6.0/24)
