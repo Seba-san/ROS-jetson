@@ -1,6 +1,7 @@
 #!/bin/bash
-master_eth=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
-master_wlan=$(ifconfig wlan0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+source ./interfaz.sh 
+master_eth=$(ifconfig $ethernet | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+master_wlan=$(ifconfig $wireles | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 
 ipjet_wlan=$(arp -n | grep -i 00:04:4B:5A:E3:63 | grep -Eo '([0-9]*\.){3}[0-9]*' )
 ipjet_eth=$(arp -n | grep -i 00:04:4B:5A:E3:65 | grep -Eo '([0-9]*\.){3}[0-9]*' )
