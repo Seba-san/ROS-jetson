@@ -1,0 +1,80 @@
+#!/bin/bash
+echo "Seteo de algunas variables"
+cd ~
+echo "export codigos=/media/seba/Datos/codigos # carpeta de codigos para la tesis" >> .bashrc
+
+#Dropbox
+echo "Dropbox, fuente:"
+echo "https://www.dropbox.com/es/install-linux"
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - ~/.dropbox-dist/dropboxd
+sudo apt install nautilus-dropbox
+
+#Wine
+echo "wine, fuente"
+echo "https://wiki.winehq.org/Ubuntu"
+echo "If your system is 64 bit, enable 32 bit architecture (if you haven't already):"
+sudo dpkg --add-architecture i386
+echo "Add the repository:"
+wget -nc https://dl.winehq.org/wine-builds/Release.key
+sudo apt-key add Release.key
+sudo apt-add-repository https://dl.winehq.org/wine-builds/ubuntu/
+echo "Update packages:"
+sudo apt-get update
+echo "Stable branch"
+sudo apt-get install --install-recommends winehq-stable
+echo "stickinotes, fuente:"
+echo "http://www.webupd8.org/2012/11/pin-notes-on-your-desktop-with.html"
+sudo add-apt-repository ppa:umang/indicator-stickynotes
+sudo apt-get update
+sudo apt-get install indicator-stickynotes
+# Agregar la hibernacion
+cd ~ && nano com.ubuntu.enable-hibernate.pkla
+# copiar esto:
+#[Re-enable hibernate by default in upower]
+#Identity=unix-user:*
+#Action=org.freedesktop.upower.hibernate
+#ResultActive=yes
+
+#[Re-enable hibernate by default in logind]
+#Identity=unix-user:*
+#Action=org.freedesktop.login1.hibernate;org.freedesktop.login1.hibernate-multiple-sessions
+#ResultActive=yes
+
+# pasarlo a esta carpeta
+#sudo mv com.ubuntu.enable-hibernate.pkla /etc/polkit-1/localauthority/50-local.d
+#reiniciar y listo.
+
+# editor Atom
+echo "Atom"
+sudo apt install curl
+curl -L https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
+sudo apt-get update
+# Install Atom
+sudo apt-get install atom
+
+#java (para usar eclipse)
+echo "java"
+sudo apt-get install default-jre
+#cmake
+echo "cmake"
+sudo apt install cmake
+#opencv
+echo "opencv"
+sudo apt-get install build-essential
+sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+cd ~
+git clone https://github.com/opencv/opencv.git
+cd ~/opencv
+mkdir build # o release ?
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
+make -j7 # runs 7 jobs in parallel
+#make
+sudo make install
+
+#LATEX - texmaker - texlive
+echo "LATEX - texmaker - texlive"
+sudo apt-get install texlive-full
+sudo apt-get install texmaker

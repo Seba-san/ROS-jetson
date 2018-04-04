@@ -1,1 +1,1 @@
-/home/nvidia/ZED_pruebas/dataset/src/
+/home/nvidia/ZED_pruebas/zed-examples/svo_recording/recording/src
