@@ -1,7 +1,7 @@
   #! /bin/bash
   echo "Se realiza un escaneo de todas las redes conectadas disponibles"
   echo "este seguro que se encuentra conectado a la misma red"
-source ./interfaz.sh
+source ./interfaz.sh # se busca cual es el nombre de las 2 interfaces 
   red=$(ifconfig $ethernet | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){2}[0-9]*' | grep -v '127.0.0.1')
   red_broadcast=$red
 
@@ -15,9 +15,10 @@ if  [ -n "$red_broadcast" ]
   echo "Buscando jetson en $ethernet con: sudo nmap -sP $red_broadcast.0/24" # -sP es para que solo haga ping
 Nmap=$(sudo nmap -sP $red_broadcast.0/24)
 Nmap_2=$(echo "$Nmap"| grep  "Nvidia" )
+#Nmap=$(sudo nmap -sP $red_broadcast.0/24 | grep  "Nvidia" )
 if [ -n "$Nmap_2" ] # las comillas en el nombre de la variable es para que la considere como una sola strings. Bash separa en dinstintos strings si hay espacios
 then
-  Nmap_2=$(echo "$Nmap"| grep  00:04:4B:5A:E3:65)
+  Nmap_2=$(echo "$Nmap_2"| grep  00:04:4B:5A:E3:65)
   if [ -n "$Nmap_2" ] # las comillas en el nombre de la variable es para que la considere como una sola strings. Bash separa en dinstintos strings si hay espacios
   then
   Mac_f1=${Nmap%00:04:4B:5A:E3:65*}
